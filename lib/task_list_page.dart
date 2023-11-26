@@ -4,12 +4,14 @@ import 'package:notes/task_detail_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class TaskListPage extends StatefulWidget {
+  const TaskListPage({super.key});
+
   @override
   _TaskListPageState createState() => _TaskListPageState();
 }
 
 class _TaskListPageState extends State<TaskListPage> {
-  TextEditingController _controller = TextEditingController();
+  final TextEditingController _controller = TextEditingController();
   List<Task> _tasks = [];
   int _editingIndex = -1;
 
@@ -59,14 +61,14 @@ class _TaskListPageState extends State<TaskListPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Catatan Harian'),
+        title: const Text('DoItNow'),
       ),
       body: _buildTaskList(),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           _showAddTaskDialog(context);
         },
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
       ),
     );
   }
@@ -97,14 +99,14 @@ class _TaskListPageState extends State<TaskListPage> {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         IconButton(
-                          icon: Icon(Icons.edit),
+                          icon: const Icon(Icons.edit),
                           onPressed: () {
                             _editTask(index);
                             _showAddTaskDialog(context);
                           },
                         ),
                         IconButton(
-                          icon: Icon(Icons.delete),
+                          icon: const Icon(Icons.delete),
                           onPressed: () {
                             _deleteTask(index);
                           },
@@ -126,13 +128,13 @@ class _TaskListPageState extends State<TaskListPage> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: Text(_editingIndex == -1 ? 'Tambah Tugas' : 'Edit Tugas'),
+          title: Text(_editingIndex == -1 ? 'Add New Task' : 'Edit Task'),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               TextField(
                 controller: _controller,
-                decoration: InputDecoration(hintText: 'Masukkan judul tugas'),
+                decoration: const InputDecoration(hintText: 'Enter the task title'),
               ),
               TextField(
                 onChanged: (value) {
@@ -140,7 +142,7 @@ class _TaskListPageState extends State<TaskListPage> {
                     _tasks[_editingIndex].subtitle = value;
                   });
                 },
-                decoration: InputDecoration(hintText: 'Masukkan deskripsi tugas'),
+                decoration: const InputDecoration(hintText: 'Enter the task description'),
               ),
             ],
           ),
@@ -150,14 +152,14 @@ class _TaskListPageState extends State<TaskListPage> {
                 Navigator.of(context).pop();
                 _editingIndex = -1;
               },
-              child: Text('Batal'),
+              child: const Text('Cancel'),
             ),
             TextButton(
               onPressed: () {
                 _saveTask();
                 Navigator.of(context).pop();
               },
-              child: Text(_editingIndex == -1 ? 'Simpan' : 'Edit'),
+              child: Text(_editingIndex == -1 ? 'Save' : 'Edit'),
             ),
           ],
         );
