@@ -8,11 +8,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'DoItNow',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
       home: TaskListPage(),
     );
   }
