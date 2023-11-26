@@ -33,22 +33,24 @@ class _TaskListPageState extends State<TaskListPage> {
   void _saveTask() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     if (_editingIndex == -1) {
-      _tasks.add(Task(title: _controller.text, subtitle: _controllerSubtitle.text));
+      _tasks.add(
+          Task(title: _controller.text, subtitle: _controllerSubtitle.text));
     } else {
       _tasks[_editingIndex].title = _controller.text;
       _tasks[_editingIndex].subtitle = _controllerSubtitle.text;
       _editingIndex = -1;
     }
     Task.saveToSharedPreferences(prefs, _tasks);
+    _loadTasks();
     _controller.clear();
     _controllerSubtitle.clear(); // Clear subtitle controller
-    _loadTasks();
   }
 
   void _editTask(int index) {
     setState(() {
       _editingIndex = index;
       _controller.text = _tasks[index].title;
+      _controllerSubtitle.text = _tasks[index].subtitle;
     });
   }
 
@@ -100,11 +102,21 @@ class _TaskListPageState extends State<TaskListPage> {
                 return Container(
                   margin: const EdgeInsets.only(bottom: 8.0),
                   child: Card(
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15.0)),
                     elevation: 4,
                     child: ListTile(
-                      title: Text(_tasks[index].title, style: MyStyle.titleStyle,),
-                      subtitle: Text(_tasks[index].subtitle),
+                      title: Text(
+                        _tasks[index].title,
+                        style: MyStyle.titleStyle,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      subtitle: Text(
+                        _tasks[index].subtitle,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
                       onTap: () {
                         Navigator.push(
                           context,
@@ -148,26 +160,53 @@ class _TaskListPageState extends State<TaskListPage> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: Text(_editingIndex == -1 ? 'Add New Task' : 'Edit Task'),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              TextField(
-                controller: _controller,
-                decoration:
-                    const InputDecoration(hintText: 'Enter the task title'),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
+          title: Text(
+            _editingIndex == -1 ? 'Add New Task' : 'Edit Task',
+            textAlign: TextAlign.center,
+          ),
+          content: SizedBox(
+            width: MediaQuery.of(context).size.width * 0.8,
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  TextField(
+                    controller: _controller,
+                    style: const TextStyle(fontSize: 16.0),
+                    decoration: InputDecoration(
+                      hintText: 'Enter the task title',
+                      hintStyle: const TextStyle(color: Colors.grey),
+                      filled: true,
+                      fillColor: Colors.grey[200],
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                        borderSide: BorderSide.none,
+                      ),
+                      contentPadding: const EdgeInsets.all(16.0),
+                    ),
+                  ),
+                  const SizedBox(height: 16.0),
+                  TextField(
+                    controller: _controllerSubtitle,
+                    maxLines: null,
+                    style: const TextStyle(fontSize: 16.0),
+                    decoration: InputDecoration(
+                      hintText: 'Enter the task description',
+                      hintStyle: const TextStyle(color: Colors.grey),
+                      filled: true,
+                      fillColor: Colors.grey[200],
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                        borderSide: BorderSide.none,
+                      ),
+                      contentPadding: const EdgeInsets.all(16.0),
+                    ),
+                  ),
+                ],
               ),
-              TextField(
-                onChanged: (value) {
-                  setState(() {
-                    _controllerSubtitle.text = value;
-                    _tasks[_editingIndex].subtitle = value;
-                  });
-                },
-                decoration: const InputDecoration(
-                    hintText: 'Enter the task description'),
-              ),
-            ],
+            ),
           ),
           actions: [
             TextButton(

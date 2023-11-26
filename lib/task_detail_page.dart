@@ -11,8 +11,17 @@ class TaskDetailPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color(0xFFF7F8FA),
       appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: Colors.black),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
         centerTitle: true,
-        title: const Text('Task Detail', style: TextStyle(color: Colors.black),),
+        title: const Text(
+          'Task Detail',
+          style: TextStyle(color: Colors.black),
+        ),
         backgroundColor: Colors.transparent,
         elevation: 0,
       ),
@@ -21,19 +30,65 @@ class TaskDetailPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              'Task Title:',
-              style: MyStyle.titleStyle,
+            Container(
+              width: double.maxFinite,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15.0),
+                color: Colors.white,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.3),
+                    spreadRadius: 2,
+                    blurRadius: 5,
+                    offset: Offset(0, 3),
+                  ),
+                ],
+              ),
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children:[
+                  const Text(
+                    'Task Title:',
+                    style: MyStyle.titleStyle,
+                  ),
+                  Text(
+                    task.title,
+                    style: MyStyle.subTitleStyle,
+                  ),
+                ],
+              ),
             ),
-            const SizedBox(height: 8.0),
-            Text(task.title, style: MyStyle.subTitleStyle,),
             const SizedBox(height: 16.0),
-            const Text(
-              'Task Description:',
-              style: MyStyle.titleStyle,
+            Container(
+              width: double.maxFinite,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(15.0),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.3),
+                    spreadRadius: 2,
+                    blurRadius: 5,
+                    offset: Offset(0, 3),
+                  ),
+                ],
+              ),
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    'Task Description:',
+                    style: MyStyle.titleStyle,
+                  ),
+                  Text(
+                    task.subtitle,
+                    style: MyStyle.subTitleStyle,
+                  ),
+                ],
+              ),
             ),
-            const SizedBox(height: 8.0),
-            Text(task.subtitle, style: MyStyle.subTitleStyle,),
           ],
         ),
       ),
@@ -43,13 +98,8 @@ class TaskDetailPage extends StatelessWidget {
 
 class MyStyle {
   static const TextStyle titleStyle = TextStyle(
-    fontWeight: FontWeight.bold,
-    fontSize: 18,
-    color: Color(0xFF333333)
-  );
+      fontWeight: FontWeight.bold, fontSize: 18, color: Color(0xFF333333));
 
-  static const subTitleStyle = TextStyle(
-    fontSize: 16,
-    color: Color(0xFF333333)
-  );
+  static const subTitleStyle =
+      TextStyle(fontSize: 16, color: Color(0xFF333333));
 }
