@@ -1,16 +1,27 @@
-# notes
+# ToDo App
+ToDo App adalah aplikasi sederhana yang memungkinkan pengguna untuk mencatat dan mengelola daftar tugas.
 
-A new Flutter project.
+## Fitur
+- Tambahkan tugas baru dengan judul dan deskripsi.
+- Edit tugas jika terdapat perubahan.
+- Hapus tugas untuk menandai sebagai selesai.
+- Lihat detail tugas.
 
-## Getting Started
+## Penggunaan
+### Tambah Tugas Baru
+- Tekan tombol `+ Add New Task` di layar utama.
+- Isi formulir dengan judul dan deskripsi tugas.
+- Tekan tombol `simpan` untuk menambahkan tugas.
+- Tekan tombol `cancel` untuk membatalkan.
 
-This project is a starting point for a Flutter application.
+### Hapus Tugas (Menyelesaikan Tugas)
+- Tekan tombol keranjang sampah pada tugas yang ingin diselesaikan/dihapus.
 
-A few resources to get you started if this is your first Flutter project:
+### Edit Tugas
+- Tekan tombol pulpen pada tugas yang ingin diedit.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+### Lihat Detail Tugas
+- Tekan pada tugas di layar utama untuk melihat detail.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Pengembangan
+Proyek ini dikembangkan menggunakan Flutter dan SharedPreferences sebagai basis data lokal.
