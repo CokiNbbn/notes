@@ -20,7 +20,7 @@ class TaskDetailPage extends StatelessWidget {
         centerTitle: true,
         title: const Text(
           'Task Detail',
-          style: TextStyle(color: Colors.black),
+          style: MyStyle.titleStyle,
         ),
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -47,10 +47,13 @@ class TaskDetailPage extends StatelessWidget {
               padding: const EdgeInsets.all(16.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children:[
+                children: [
                   const Text(
-                    'Task Title:',
-                    style: MyStyle.titleStyle,
+                    'Title:',
+                    style: TextStyle(
+                        fontFamily: 'Poppins',
+                        color: Colors.grey,
+                        fontSize: 18.0),
                   ),
                   Text(
                     task.title,
@@ -79,8 +82,11 @@ class TaskDetailPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Text(
-                    'Task Description:',
-                    style: MyStyle.titleStyle,
+                    'Description:',
+                    style: TextStyle(
+                        fontFamily: 'Poppins',
+                        color: Colors.grey,
+                        fontSize: 18.0),
                   ),
                   Text(
                     task.subtitle,
@@ -98,8 +104,11 @@ class TaskDetailPage extends StatelessWidget {
 
 class MyStyle {
   static const TextStyle titleStyle = TextStyle(
-      fontWeight: FontWeight.bold, fontSize: 18, color: Color(0xFF333333));
+      fontWeight: FontWeight.w500,
+      fontSize: 18,
+      color: Color(0xFF333333),
+      fontFamily: 'Poppins');
 
   static const subTitleStyle =
-      TextStyle(fontSize: 16, color: Color(0xFF333333));
+      TextStyle(fontSize: 16, color: Color(0xFF333333), fontFamily: 'Poppins');
 }

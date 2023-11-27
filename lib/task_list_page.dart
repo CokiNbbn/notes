@@ -4,7 +4,7 @@ import 'package:notes/task_detail_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class TaskListPage extends StatefulWidget {
-  const TaskListPage({super.key});
+  const TaskListPage({Key? key}) : super(key: key);
 
   @override
   _TaskListPageState createState() => _TaskListPageState();
@@ -56,6 +56,7 @@ class _TaskListPageState extends State<TaskListPage> {
 
   void _deleteTask(int index) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
+    await Future.delayed(const Duration(seconds: 1));
     setState(() {
       _tasks.removeAt(index);
       _editingIndex = -1; // Reset editing index after deletion
@@ -70,8 +71,8 @@ class _TaskListPageState extends State<TaskListPage> {
       appBar: AppBar(
         centerTitle: true,
         title: const Text(
-          'DoItNow',
-          style: TextStyle(color: Colors.black),
+          'To Do',
+          style: MyStyle.titleStyle,
         ),
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -98,59 +99,74 @@ class _TaskListPageState extends State<TaskListPage> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Expanded(
-            child: ListView.builder(
-              itemCount: _tasks.length,
-              itemBuilder: (context, index) {
-                return Container(
-                  margin: const EdgeInsets.only(bottom: 8.0),
-                  child: Card(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15.0)),
-                    elevation: 4,
-                    child: ListTile(
-                      title: Text(
-                        _tasks[index].title,
-                        style: MyStyle.titleStyle,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
+            child: _tasks.isEmpty
+                ? Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: const [
+                      Text(
+                        'All Done',
+                        style: TextStyle(fontSize: 30.0, color: Colors.grey),
                       ),
-                      subtitle: Text(
-                        _tasks[index].subtitle,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                TaskDetailPage(task: _tasks[index]),
-                          ),
-                        );
-                      },
-                      trailing: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          IconButton(
-                            icon: const Icon(Icons.edit),
-                            onPressed: () {
-                              _editTask(index);
-                              _showAddTaskDialog(context);
+                      Icon(
+                        Icons.done_rounded,
+                        size: 100,
+                        color: Colors.green,
+                      )
+                    ],
+                  )
+                : ListView.builder(
+                    itemCount: _tasks.length,
+                    itemBuilder: (context, index) {
+                      return Container(
+                        margin: const EdgeInsets.only(bottom: 8.0),
+                        child: Card(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15.0)),
+                          elevation: 4,
+                          child: ListTile(
+                            title: Text(
+                              _tasks[index].title,
+                              style: MyStyle.titleStyle,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                            subtitle: Text(
+                              _tasks[index].subtitle,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      TaskDetailPage(task: _tasks[index]),
+                                ),
+                              );
                             },
+                            trailing: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                IconButton(
+                                  icon: const Icon(Icons.edit),
+                                  onPressed: () {
+                                    _editTask(index);
+                                    _showAddTaskDialog(context);
+                                  },
+                                ),
+                                IconButton(
+                                  icon: const Icon(Icons.delete),
+                                  onPressed: () {
+                                    _deleteTask(index);
+                                  },
+                                ),
+                              ],
+                            ),
                           ),
-                          IconButton(
-                            icon: const Icon(Icons.delete),
-                            onPressed: () {
-                              _deleteTask(index);
-                            },
-                          ),
-                        ],
-                      ),
-                    ),
+                        ),
+                      );
+                    },
                   ),
-                );
-              },
-            ),
           ),
         ],
       ),
@@ -166,6 +182,7 @@ class _TaskListPageState extends State<TaskListPage> {
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
           title: Text(
             _editingIndex == -1 ? 'Add New Task' : 'Edit Task',
+            style: MyStyle.titleStyle,
             textAlign: TextAlign.center,
           ),
           content: SizedBox(
@@ -176,7 +193,7 @@ class _TaskListPageState extends State<TaskListPage> {
                 children: [
                   TextField(
                     controller: _controller,
-                    style: const TextStyle(fontSize: 16.0),
+                    style: MyStyle.subTitleStyle,
                     decoration: InputDecoration(
                       hintText: 'Enter the task title',
                       hintStyle: const TextStyle(color: Colors.grey),
@@ -193,7 +210,7 @@ class _TaskListPageState extends State<TaskListPage> {
                   TextField(
                     controller: _controllerSubtitle,
                     maxLines: null,
-                    style: const TextStyle(fontSize: 16.0),
+                    style: MyStyle.subTitleStyle,
                     decoration: InputDecoration(
                       hintText: 'Enter the task description',
                       hintStyle: const TextStyle(color: Colors.grey),
@@ -216,14 +233,18 @@ class _TaskListPageState extends State<TaskListPage> {
                 Navigator.of(context).pop();
                 _editingIndex = -1;
               },
-              child: const Text('Cancel'),
+              child: const Text(
+                'Cancel',
+                style: TextStyle(fontFamily: 'Poppins'),
+              ),
             ),
             TextButton(
               onPressed: () {
                 _saveTask();
                 Navigator.of(context).pop();
               },
-              child: Text(_editingIndex == -1 ? 'Save' : 'Edit'),
+              child: Text(_editingIndex == -1 ? 'Save' : 'Edit',
+                  style: const TextStyle(fontFamily: 'Poppins')),
             ),
           ],
         );

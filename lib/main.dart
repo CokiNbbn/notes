@@ -10,10 +10,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'DoItNow',
+      title: 'To Do',
       home: TaskListPage(),
     );
   }
 }
-
-
