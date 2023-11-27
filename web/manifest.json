@@ -1,6 +1,6 @@
 {
-    "name": "notes",
-    "short_name": "notes",
+    "name": "To Do",
+    "short_name": "To Do",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
