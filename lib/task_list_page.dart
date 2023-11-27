@@ -3,6 +3,8 @@ import 'package:notes/task.dart';
 import 'package:notes/task_detail_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'about_dev_page.dart';
+
 class TaskListPage extends StatefulWidget {
   const TaskListPage({Key? key}) : super(key: key);
 
@@ -76,6 +78,18 @@ class _TaskListPageState extends State<TaskListPage> {
         ),
         backgroundColor: Colors.transparent,
         elevation: 0,
+        actions: [
+          IconButton(
+              iconSize: 15.0,
+              color: Colors.grey,
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => AboutDeveloperPage()),
+                );
+              },
+              icon: const Icon(Icons.info_outline_rounded))
+        ],
       ),
       body: _buildTaskList(),
       floatingActionButton: FloatingActionButton.extended(
