@@ -79,6 +79,8 @@ class _TaskListPageState extends State<TaskListPage> {
       body: _buildTaskList(),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
+          _controller.clear();
+          _controllerSubtitle.clear();
           _showAddTaskDialog(context);
         },
         shape:
