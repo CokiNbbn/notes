@@ -24,110 +24,117 @@ class AboutDeveloperPage extends StatelessWidget {
           },
         ),
       ),
-      body: Column(
-        children: [
-          Container(
-            margin: const EdgeInsets.all(20.0),
-            width: double.maxFinite,
-            padding: const EdgeInsets.all(15.0),
-            decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(15.0),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.3),
-                    spreadRadius: 2,
-                    blurRadius: 5,
-                    offset: const Offset(0, 3),
-                  ),
-                ]),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const ClipOval(
-                    child: Image(
-                  image: AssetImage('assets/images/profil.jpg'),
-                )),
-                const SizedBox(
-                  height: 20.0,
-                ),
-                const Center(
-                  child: Text(
-                    'Coki Rofin Martogi Nababan',
-                    style: TextStyle(
-                      fontFamily: 'Poppins',
-                      color: Colors.black,
-                      fontSize: 20.0,
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+              margin: const EdgeInsets.all(20.0),
+              width: double.maxFinite,
+              padding: const EdgeInsets.all(15.0),
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(15.0),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.3),
+                      spreadRadius: 2,
+                      blurRadius: 5,
+                      offset: const Offset(0, 3),
                     ),
+                  ]),
+              child: const Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  ClipOval(
+                      child: Image(
+                    image: AssetImage('assets/images/profil.jpg'),
+                  )),
+                  SizedBox(
+                    height: 20.0,
                   ),
-                ),
-                const SizedBox(
-                  height: 12.0,
-                ),
-                const Text(
-                  'Information Systems Student at Universitas Airlangga',
-                  style: TextStyle(
-                    fontFamily: 'Poppins',
-                    color: Colors.black54,
-                    fontSize: 14.0,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-                const SizedBox(
-                  height: 150.0,
-                ),
-                const Text(
-                  'Contact Me',
-                  style: TextStyle(
-                    fontFamily: 'Poppins',
-                    color: Colors.black87,
-                    fontSize: 14.0,
-                  ),
-                ),
-                Row(
-                  children: const [
-                    Icon(
-                      FontAwesomeIcons.linkedin,
-                      size: 12.0,
-                    ),
-                    SizedBox(
-                      width: 8.0,
-                    ),
-                    Text(
+                  Center(
+                    child: Text(
                       'Coki Rofin Martogi Nababan',
                       style: TextStyle(
                         fontFamily: 'Poppins',
-                        color: Colors.black54,
-                        fontSize: 14.0,
+                        color: Colors.black,
+                        fontSize: 20.0,
                       ),
-                      textAlign: TextAlign.center,
                     ),
-                  ],
-                ),
-                Row(
-                  children: const [
-                    Icon(
-                      FontAwesomeIcons.envelope,
-                      size: 12.0,
+                  ),
+                  SizedBox(
+                    height: 12.0,
+                  ),
+                  Text(
+                    'Information Systems Student at Universitas Airlangga',
+                    style: TextStyle(
+                      fontFamily: 'Poppins',
+                      color: Colors.black54,
+                      fontSize: 14.0,
                     ),
-                    SizedBox(
-                      width: 8.0,
-                    ),
-                    Text(
-                      'cokynababan28@gmail.com',
-                      style: TextStyle(
-                        fontFamily: 'Poppins',
-                        color: Colors.black54,
-                        fontSize: 14.0,
+                    textAlign: TextAlign.center,
+                  ),
+                  SizedBox(
+                    height: 150.0,
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Contact Me',
+                        style: TextStyle(
+                          fontFamily: 'Poppins',
+                          color: Colors.black87,
+                          fontSize: 14.0,
+                        ),
                       ),
-                      textAlign: TextAlign.center,
-                    ),
-                  ],
-                ),
-              ],
+                      Row(
+                        children: [
+                          Icon(
+                            FontAwesomeIcons.linkedin,
+                            size: 12.0,
+                          ),
+                          SizedBox(
+                            width: 8.0,
+                          ),
+                          Text(
+                            'Coki Rofin Martogi Nababan',
+                            style: TextStyle(
+                              fontFamily: 'Poppins',
+                              color: Colors.black54,
+                              fontSize: 14.0,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Icon(
+                            FontAwesomeIcons.envelope,
+                            size: 12.0,
+                          ),
+                          SizedBox(
+                            width: 8.0,
+                          ),
+                          Text(
+                            'cokynababan28@gmail.com',
+                            style: TextStyle(
+                              fontFamily: 'Poppins',
+                              color: Colors.black54,
+                              fontSize: 14.0,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

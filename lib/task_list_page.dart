@@ -85,7 +85,7 @@ class _TaskListPageState extends State<TaskListPage> {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => AboutDeveloperPage()),
+                  MaterialPageRoute(builder: (context) => const AboutDeveloperPage()),
                 );
               },
               icon: const Icon(Icons.info_outline_rounded))
@@ -114,9 +114,9 @@ class _TaskListPageState extends State<TaskListPage> {
         children: [
           Expanded(
             child: _tasks.isEmpty
-                ? Column(
+                ? const Column(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
+                    children: [
                       Text(
                         'All Done',
                         style: TextStyle(fontSize: 30.0, color: Colors.grey),
