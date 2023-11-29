@@ -191,78 +191,93 @@ class _TaskListPageState extends State<TaskListPage> {
     return showDialog(
       context: context,
       builder: (context) {
-        return AlertDialog(
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
-          title: Text(
-            _editingIndex == -1 ? 'Add New Task' : 'Edit Task',
-            style: MyStyle.titleStyle,
-            textAlign: TextAlign.center,
+        return Dialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15.0),
           ),
-          content: SizedBox(
-            width: MediaQuery.of(context).size.width * 0.8,
-            child: SingleChildScrollView(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  TextField(
-                    controller: _controller,
-                    style: MyStyle.subTitleStyle,
-                    decoration: InputDecoration(
-                      hintText: 'Enter the task title',
-                      hintStyle: const TextStyle(color: Colors.grey),
-                      filled: true,
-                      fillColor: Colors.grey[200],
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                        borderSide: BorderSide.none,
-                      ),
-                      contentPadding: const EdgeInsets.all(16.0),
-                    ),
+          child: ListView(
+            shrinkWrap: true,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Center(
+                  child: Text(
+                    _editingIndex == -1 ? 'Add New Task' : 'Edit Task',
+                    style: MyStyle.titleStyle,
                   ),
-                  const SizedBox(height: 16.0),
-                  TextField(
-                    controller: _controllerSubtitle,
-                    maxLines: null,
-                    style: MyStyle.subTitleStyle,
-                    decoration: InputDecoration(
-                      hintText: 'Enter the task description',
-                      hintStyle: const TextStyle(color: Colors.grey),
-                      filled: true,
-                      fillColor: Colors.grey[200],
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                        borderSide: BorderSide.none,
-                      ),
-                      contentPadding: const EdgeInsets.all(16.0),
-                    ),
-                  ),
-                ],
+                ),
               ),
-            ),
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  children: [
+                    TextField(
+                      controller: _controller,
+                      style: MyStyle.subTitleStyle,
+                      decoration: InputDecoration(
+                        hintText: 'Enter the task title',
+                        hintStyle: const TextStyle(color: Colors.grey),
+                        filled: true,
+                        fillColor: Colors.grey[200],
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                          borderSide: BorderSide.none,
+                        ),
+                        contentPadding: const EdgeInsets.all(16.0),
+                      ),
+                    ),
+                    const SizedBox(height: 16.0),
+                    TextField(
+                      controller: _controllerSubtitle,
+                      maxLines: null,
+                      style: MyStyle.subTitleStyle,
+                      decoration: InputDecoration(
+                        hintText: 'Enter the task description',
+                        hintStyle: const TextStyle(color: Colors.grey),
+                        filled: true,
+                        fillColor: Colors.grey[200],
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                          borderSide: BorderSide.none,
+                        ),
+                        contentPadding: const EdgeInsets.all(16.0),
+                      ),
+                    ),
+                    const SizedBox(height: 16.0),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        TextButton(
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                            _editingIndex = -1;
+                          },
+                          child: const Text(
+                            'Cancel',
+                            style: TextStyle(fontFamily: 'Poppins'),
+                          ),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            _saveTask();
+                            Navigator.of(context).pop();
+                          },
+                          child: Text(
+                            _editingIndex == -1 ? 'Save' : 'Edit',
+                            style: const TextStyle(fontFamily: 'Poppins'),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-                _editingIndex = -1;
-              },
-              child: const Text(
-                'Cancel',
-                style: TextStyle(fontFamily: 'Poppins'),
-              ),
-            ),
-            TextButton(
-              onPressed: () {
-                _saveTask();
-                Navigator.of(context).pop();
-              },
-              child: Text(_editingIndex == -1 ? 'Save' : 'Edit',
-                  style: const TextStyle(fontFamily: 'Poppins')),
-            ),
-          ],
         );
       },
     );
   }
+
+
 }
