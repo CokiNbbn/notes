@@ -12,7 +12,10 @@ class TaskDetailPage extends StatelessWidget {
       backgroundColor: const Color(0xFFF7F8FA),
       appBar: AppBar(
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.black),
+          icon: const Icon(
+            Icons.arrow_back,
+            color: Colors.black,
+          ),
           onPressed: () {
             Navigator.pop(context);
           },
@@ -52,9 +55,10 @@ class TaskDetailPage extends StatelessWidget {
                     const Text(
                       'Title:',
                       style: TextStyle(
-                          fontFamily: 'Poppins',
-                          color: Colors.grey,
-                          fontSize: 18.0),
+                        fontFamily: 'Poppins',
+                        color: Colors.grey,
+                        fontSize: 18.0,
+                      ),
                     ),
                     Text(
                       task.title,
@@ -85,9 +89,10 @@ class TaskDetailPage extends StatelessWidget {
                     const Text(
                       'Description:',
                       style: TextStyle(
-                          fontFamily: 'Poppins',
-                          color: Colors.grey,
-                          fontSize: 18.0),
+                        fontFamily: 'Poppins',
+                        color: Colors.grey,
+                        fontSize: 18.0,
+                      ),
                     ),
                     Text(
                       task.subtitle,
@@ -106,11 +111,15 @@ class TaskDetailPage extends StatelessWidget {
 
 class MyStyle {
   static const TextStyle titleStyle = TextStyle(
-      fontWeight: FontWeight.w500,
-      fontSize: 18,
-      color: Color(0xFF333333),
-      fontFamily: 'Poppins');
+    fontWeight: FontWeight.w500,
+    fontSize: 18,
+    color: Color(0xFF333333),
+    fontFamily: 'Poppins',
+  );
 
-  static const subTitleStyle =
-      TextStyle(fontSize: 16, color: Color(0xFF333333), fontFamily: 'Poppins');
+  static const subTitleStyle = TextStyle(
+    fontSize: 16,
+    color: Color(0xFF333333),
+    fontFamily: 'Poppins',
+  );
 }

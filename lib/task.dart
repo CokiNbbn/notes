@@ -7,8 +7,8 @@ class Task {
   Task({required this.title, this.subtitle = ''});
 
   static List<Task> fromSharedPreferences(SharedPreferences prefs) {
-    List<String>? taskTitles = prefs.getStringList('task_titles');
-    List<String>? taskSubtitles = prefs.getStringList('task_subtitles');
+    final taskTitles = prefs.getStringList('task_titles');
+    final taskSubtitles = prefs.getStringList('task_subtitles');
     List<Task> tasks = [];
 
     if (taskTitles != null) {
@@ -23,8 +23,8 @@ class Task {
   }
 
   static void saveToSharedPreferences(SharedPreferences prefs, List<Task> tasks) {
-    List<String> taskTitles = tasks.map((task) => task.title).toList();
-    List<String> taskSubtitles = tasks.map((task) => task.subtitle).toList();
+    final taskTitles = tasks.map((task) => task.title).toList();
+    final taskSubtitles = tasks.map((task) => task.subtitle).toList();
     prefs.setStringList('task_titles', taskTitles);
     prefs.setStringList('task_subtitles', taskSubtitles);
   }

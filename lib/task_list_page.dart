@@ -25,6 +25,13 @@ class _TaskListPageState extends State<TaskListPage> {
     _loadTasks();
   }
 
+  @override
+  void dispose() {
+    _controller.dispose();
+    _controllerSubtitle.dispose();
+    super.dispose();
+  }
+
   void _loadTasks() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
@@ -85,7 +92,8 @@ class _TaskListPageState extends State<TaskListPage> {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const AboutDeveloperPage()),
+                  MaterialPageRoute(
+                      builder: (context) => const AboutDeveloperPage()),
                 );
               },
               icon: const Icon(Icons.info_outline_rounded))
@@ -119,7 +127,10 @@ class _TaskListPageState extends State<TaskListPage> {
                     children: [
                       Text(
                         'All Done',
-                        style: TextStyle(fontSize: 30.0, color: Colors.grey),
+                        style: TextStyle(
+                          fontSize: 30.0,
+                          color: Colors.grey,
+                        ),
                       ),
                       Icon(
                         Icons.done_rounded,
@@ -216,7 +227,9 @@ class _TaskListPageState extends State<TaskListPage> {
                       style: MyStyle.subTitleStyle,
                       decoration: InputDecoration(
                         hintText: 'Enter the task title',
-                        hintStyle: const TextStyle(color: Colors.grey),
+                        hintStyle: const TextStyle(
+                          color: Colors.grey,
+                        ),
                         filled: true,
                         fillColor: Colors.grey[200],
                         border: OutlineInputBorder(
@@ -233,7 +246,9 @@ class _TaskListPageState extends State<TaskListPage> {
                       style: MyStyle.subTitleStyle,
                       decoration: InputDecoration(
                         hintText: 'Enter the task description',
-                        hintStyle: const TextStyle(color: Colors.grey),
+                        hintStyle: const TextStyle(
+                          color: Colors.grey,
+                        ),
                         filled: true,
                         fillColor: Colors.grey[200],
                         border: OutlineInputBorder(
@@ -254,7 +269,9 @@ class _TaskListPageState extends State<TaskListPage> {
                           },
                           child: const Text(
                             'Cancel',
-                            style: TextStyle(fontFamily: 'Poppins'),
+                            style: TextStyle(
+                              fontFamily: 'Poppins',
+                            ),
                           ),
                         ),
                         TextButton(
@@ -264,7 +281,9 @@ class _TaskListPageState extends State<TaskListPage> {
                           },
                           child: Text(
                             _editingIndex == -1 ? 'Save' : 'Edit',
-                            style: const TextStyle(fontFamily: 'Poppins'),
+                            style: const TextStyle(
+                              fontFamily: 'Poppins',
+                            ),
                           ),
                         ),
                       ],
@@ -278,6 +297,4 @@ class _TaskListPageState extends State<TaskListPage> {
       },
     );
   }
-
-
 }
